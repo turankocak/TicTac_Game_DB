@@ -1,0 +1,62 @@
+ --create trigger Deger_Gir
+ --on Oyun_Tahtasi
+ --instead of update
+ --as
+ --begin 
+ --declare @row int,@col int,@value char(1)
+ --select  @row=row,@col=col,@value=value from inserted
+ --select  @row=row,@col=col from  deleted
+ ----Pozisyon dolumu bosmu kontrolu
+ --begin
+ -- if (select value from Oyun_Tahtasi where row = @row AND col = @col) <> ' '
+ -- begin
+ --   raiserror('**Bu pozisyon zaten dolu baska bir secim yapiniz**', 16, 1)
+ --   return;
+ -- end
+ --update Oyun_Tahtasi set row=@row,col=@col,value=@value where row=@row AND col=@col
+ --print 'Deger Atandi'
+ --select * from Oyun_Tahtasi
+ --end
+ --end
+
+ --update Oyun_Tahtasi set row=2 , col=3, value='X'
+
+ --select * from Oyun_Tahtasi
+
+--drop trigger Deger_Gir
+
+--///////////////////////////////////////////////////////////////////////////////////////////////
+--create procedure Oyun_Tahtasi_Temizle
+--as
+--delete from Oyun_Tahtasi 
+
+--begin 
+--insert into  Oyun_Tahtasi (row, col) 
+--values (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3);
+--end
+--begin
+--select * from Oyun_Tahtasi
+--end
+
+--drop procedure Oyun_Tahtasi_Temizle
+
+--exec Oyun_Tahtasi_Temizle
+
+--////////////////////////////////////////////////////////////////////////////////////////////////
+--create procedure Deger_Gir (@row int,@col int,@player char(1))
+--as
+--begin
+--   --Atanan alan bosmu dolumu kontrolu
+--  if (select value from Oyun_Tahtasi where row = @row AND col = @col) <> ' '
+--  begin
+--    raiserror('**Bu pozisyon zaten dolu baska bir secim yapiniz**', 16,1)
+--    return;
+--  end
+
+--update Oyun_Tahtasi set value = @player where row = @row AND col = @col;
+
+--begin 
+--select * from Oyun_Tahtasi
+--end
+--end
+--////////////////////////////////////////////////////////////////////////////////////////////////

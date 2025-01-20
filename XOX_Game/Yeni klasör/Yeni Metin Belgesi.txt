@@ -1,0 +1,81 @@
+--CREATE TABLE tic_tac_toe (
+--  row INT NOT NULL,
+--  col INT NOT NULL,
+--  value CHAR(1) NOT NULL DEFAULT ' ',
+--  PRIMARY KEY (row, col)
+--);
+
+
+
+
+--INSERT INTO tic_tac_toe (row, col)
+--VALUES (1, 1), (1, 2), (1, 3), (2, 1), (2, 2), (2, 3), (3, 1), (3, 2), (3, 3);
+
+--select * from tic_tac_toe
+
+
+
+
+
+--CREATE PROCEDURE make_move (
+--  @row INT,
+--  @col INT,
+--  @player CHAR(1)
+--)
+--AS
+--BEGIN
+--  -- check if the position is already occupied
+--  IF (SELECT value FROM tic_tac_toe WHERE row = @row AND col = @col) <> ' '
+--  BEGIN
+--    RAISERROR('Position is already occupied', 16, 1);
+--    RETURN;
+--  END
+
+  -- make the move
+--  UPDATE tic_tac_toe
+--  SET value = @player
+--  WHERE row = @row AND col = @col;
+--END;
+
+--exec make_move 1,3,'X'
+
+
+
+
+--CREATE FUNCTION game_status ()
+--RETURNS CHAR(1)
+--AS
+--BEGIN
+--  -- check for a winner
+--  DECLARE @winner CHAR(1);
+
+--  SELECT @winner = value
+--  FROM tic_tac_toe
+--  WHERE row = 1 AND value = (SELECT value FROM tic_tac_toe WHERE row = 2 AND col = col) AND value = (SELECT value FROM tic_tac_toe WHERE row = 3 AND col = col)
+--  UNION
+--  SELECT value
+--  FROM tic_tac_toe
+--  WHERE col = 1 AND value = (SELECT value FROM tic_tac_toe WHERE row = row AND col = 2) AND value = (SELECT value FROM tic_tac_toe WHERE row = row AND col = 3)
+--  UNION
+--  SELECT value
+--  FROM tic_tac_toe
+--  WHERE row = col AND value = (SELECT value FROM tic_tac_toe WHERE row = 2 AND col = 2) AND value = (SELECT value FROM tic_tac_toe WHERE row = 3 AND col = 3)
+--  UNION
+--  SELECT value
+--  FROM tic_tac_toe
+--  WHERE row = 3 AND col = 1 AND value = (SELECT value FROM tic_tac_toe WHERE row = 2 AND col = 2) AND value = (SELECT value FROM tic_tac_toe WHERE row = 1 AND col = 3);
+
+--  -- return the winner, or 'T' if the game is a tie, or ' ' if the game is not over
+--  IF @winner IS NOT NULL
+--    RETURN @winner;
+--  ELSE IF (SELECT COUNT(*) FROM tic_tac_toe WHERE value = ' ') = 0
+--    RETURN 'T';
+--  ELSE
+--    RETURN ' ';
+--END;
+
+
+
+  
+
+

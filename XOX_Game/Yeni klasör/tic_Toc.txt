@@ -1,0 +1,19 @@
+--CREATE TABLE tic_tac_toe (
+--  id INT PRIMARY KEY,
+--  player VARCHAR(1),
+--  x INT,
+--  y INT
+--);
+
+--INSERT INTO tic_tac_toe (id, player, x, y) VALUES
+--(1, 'X', 0, 0),
+--(2, 'O', 1, 0),
+--(3, 'X', 2, 0),
+--(4, 'O', 0, 1),
+--(5, 'X', 1, 1),
+--(6, 'O', 2, 1),
+--(7, 'X', 0, 2),
+--(8, 'O', 1, 2),
+--(9, 'X', 2, 2);
+
+--SELECT * FROM tic_tac_toe;
